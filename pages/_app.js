@@ -1,8 +1,7 @@
 import './styles.css';
 import Link from 'next/link';
 import { useState } from 'react';
-import CommandInput from '../components/CommandInput';
-
+import CommandProcessor from '../components/CommandProcessor'; // Correct import
 
 function MyApp({ Component, pageProps }) {
   const [command, setCommand] = useState('');
@@ -53,26 +52,16 @@ function MyApp({ Component, pageProps }) {
             <li>
               <Link href="/current-inventory">Current-Inventory</Link>
             </li>
-            <li>
-              <CommandInput
-                value={command}
-                onChange={handleCommandChange}
-                onSubmit={handleSubmitCommand}
-              />
-            </li>
           </ul>
         </nav>
+        <CommandProcessor // Correct component usage
+          value={command}
+          onChange={handleCommandChange}
+          onSubmit={handleSubmitCommand}
+        />
       </div>
       <div className="container">
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="How can I help you?"
-            value={command}
-            onChange={handleCommandChange}
-          />
-          <button onClick={handleSubmitCommand}>Submit</button>
-        </div>
+        {/* Remove duplicate input field */}
       </div>
       <div className="container page-content">
         <Component {...pageProps} />
