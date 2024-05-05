@@ -24,15 +24,27 @@ function MyApp({ Component, pageProps }) {
     const action = commandCodes[command];
     
     if (action) {
-      console.log('Performing action:', action);
-      // Implement logic to perform the corresponding action
-    } else {
-      console.log('Command not recognized.');
+    console.log('Command:', command);
+    console.log('Expected action:', action);
+    switch (action) {
+      case 'Open purchase tab':
+        // Implement logic to navigate to the purchase tab
+        break;
+      case 'Open previous purchases tab':
+        // Implement logic to navigate to the previous purchases tab
+        break;
+      case 'Open current inventory tab':
+        // Implement logic to navigate to the current inventory tab
+        break;
+      default:
+        console.log('Unknown action:', action);
     }
+  } else {
+    console.log('Command not recognized.');
+  }
 
-    setCommand('');
-  };
-
+  setCommand('');
+};
   return (
     <div>
       <header>
