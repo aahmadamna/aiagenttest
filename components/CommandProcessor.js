@@ -1,8 +1,6 @@
-// CommandProcessor.js
-
 import React, { useState } from 'react';
 
-const CommandProcessor = () => {
+const CommandProcessor = ({ setActiveTab }) => {
   const [command, setCommand] = useState('');
 
   // Function to handle command input
@@ -12,8 +10,23 @@ const CommandProcessor = () => {
 
   // Function to process the command
   const processCommand = () => {
-    // Implement logic to process the command here
-    console.log('Processing command:', command);
+    // Define the codes and their corresponding actions
+    const commandCodes = {
+      '92848398KJKSDKJ': 'purchase',
+      '742HJKSKK1209JI': 'previous-purchases',
+      '384JHKDFKJ29DSF': 'current-inventory'
+    };
+
+    // Check if the submitted command matches any defined code
+    const action = commandCodes[command];
+    
+    if (action) {
+      console.log('Performing action:', action);
+      setActiveTab(action); // Set active tab based on the command
+    } else {
+      console.log('Command not recognized.');
+    }
+
     // Reset command input field
     setCommand('');
   };
@@ -34,4 +47,5 @@ const CommandProcessor = () => {
 };
 
 export default CommandProcessor;
+
 
