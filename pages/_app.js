@@ -1,5 +1,8 @@
 import './styles.css';
 import Link from 'next/link';
+
+function MyApp({ Component, pageProps }) {
+  return (
     <div>
       <header>
         <div className="container">
@@ -33,6 +36,8 @@ import Link from 'next/link';
     </div>
   );
 }
+
 export default MyApp;
+
 
 
