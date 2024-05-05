@@ -1,7 +1,7 @@
 import './styles.css';
 import Link from 'next/link';
 import { useState } from 'react';
-import CommandInput from './CommandInput';
+import CommandInput from '../CommandInput';
 
 function MyApp({ Component, pageProps }) {
   const [command, setCommand] = useState('');
