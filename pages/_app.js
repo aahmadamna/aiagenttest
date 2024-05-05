@@ -1,21 +1,35 @@
 import './styles.css';
 import Link from 'next/link';
 import { useState } from 'react';
-import CommandInput from './CommandInput'; // Import the CommandInput component
+import CommandInput from './CommandInput';
 
 function MyApp({ Component, pageProps }) {
-  const [command, setCommand] = useState(''); // State to store the command
+  const [command, setCommand] = useState('');
 
-  // Function to handle command input change
   const handleCommandChange = (event) => {
     setCommand(event.target.value);
   };
 
-  // Function to handle command submission
   const handleSubmitCommand = () => {
-    // Implement logic to handle the submitted command
     console.log('Command submitted:', command);
-    // Clear the command input field after submission
+
+    // Define the codes and their corresponding actions
+    const commandCodes = {
+      '92848398KJKSDKJ': 'Open purchase tab',
+      '742HJKSKK1209JI': 'Open previous purchases tab',
+      '384JHKDFKJ29DSF': 'Open current inventory tab'
+    };
+
+    // Check if the submitted command matches any defined code
+    const action = commandCodes[command];
+    
+    if (action) {
+      console.log('Performing action:', action);
+      // Implement logic to perform the corresponding action
+    } else {
+      console.log('Command not recognized.');
+    }
+
     setCommand('');
   };
 
@@ -27,7 +41,6 @@ function MyApp({ Component, pageProps }) {
         </div>
       </header>
       <div className="sidebar">
-        {/* Sidebar content */}
         <nav>
           <ul>
             <li>
@@ -39,7 +52,6 @@ function MyApp({ Component, pageProps }) {
             <li>
               <Link href="/current-inventory">Current-Inventory</Link>
             </li>
-            {/* Integrate the CommandInput component */}
             <li>
               <CommandInput
                 value={command}
@@ -58,12 +70,10 @@ function MyApp({ Component, pageProps }) {
             value={command}
             onChange={handleCommandChange}
           />
-          {/* Button to submit the command */}
           <button onClick={handleSubmitCommand}>Submit</button>
         </div>
       </div>
       <div className="container page-content">
-        {/* Render the component */}
         <Component {...pageProps} />
       </div>
     </div>
