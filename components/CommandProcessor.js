@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
 
-const CommandProcessor = ({ setActiveTab }) => {
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+
+const CommandProcessor = () => {
   const [command, setCommand] = useState('');
+  const router = useRouter();
 
   // Function to handle command input
   const handleCommandInput = (event) => {
@@ -12,17 +15,17 @@ const CommandProcessor = ({ setActiveTab }) => {
   const processCommand = () => {
     // Define the codes and their corresponding actions
     const commandCodes = {
-      '92848398KJKSDKJ': 'purchase',
-      '742HJKSKK1209JI': 'previous-purchases',
-      '384JHKDFKJ29DSF': 'current-inventory'
+      '92848398KJKSDKJ': '/purchase',
+      '742HJKSKK1209JI': '/previous-purchases',
+      '384JHKDFKJ29DSF': '/current-inventory'
     };
 
     // Check if the submitted command matches any defined code
-    const action = commandCodes[command];
+    const path = commandCodes[command];
     
-    if (action) {
-      console.log('Performing action:', action);
-      setActiveTab(action); // Set active tab based on the command
+    if (path) {
+      console.log('Navigating to:', path);
+      router.push(path);
     } else {
       console.log('Command not recognized.');
     }
@@ -47,5 +50,6 @@ const CommandProcessor = ({ setActiveTab }) => {
 };
 
 export default CommandProcessor;
+
 
 
