@@ -13,18 +13,17 @@ function MyApp({ Component, pageProps }) {
   const handleSubmitCommand = () => {
     console.log('Command submitted:', command);
 
-    // Define the codes and their corresponding actions
-    const commandCodes = {
-      '92848398KJKSDKJ': 'Open purchase tab',
-      '742HJKSKK1209JI': 'Open previous purchases tab',
-      '384JHKDFKJ29DSF': 'Open current inventory tab'
-    };
+  // Define the codes and their corresponding actions
+  const commandCodes = {
+    '92848398KJKSDKJ': 'Open purchase tab',
+    '742HJKSKK1209JI': 'Open previous purchases tab',
+    '384JHKDFKJ29DSF': 'Open current inventory tab'
+  };
 
-    // Check if the submitted command matches any defined code
-    const action = commandCodes[command];
-    
-    if (action) {
-    console.log('Command:', command);
+  // Check if the submitted command matches any defined code
+  const action = commandCodes[command];
+  
+  if (action) {
     console.log('Expected action:', action);
     switch (action) {
       case 'Open purchase tab':
@@ -45,6 +44,7 @@ function MyApp({ Component, pageProps }) {
 
   setCommand('');
 };
+
   return (
     <div>
       <header>
