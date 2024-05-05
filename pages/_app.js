@@ -1,54 +1,41 @@
 import './styles.css';
 import Link from 'next/link';
 import { useState } from 'react';
-import CommandProcessor from '../components/CommandProcessor'; // Correct import
+import CommandProcessor from '../components/CommandProcessor';
+import { useRouter } from 'next/router'; // Import the useRouter hook
 
 function MyApp({ Component, pageProps }) {
   const [command, setCommand] = useState('');
+  const router = useRouter(); // Get the router object
 
   const handleCommandChange = (event) => {
     setCommand(event.target.value);
   };
 
   const handleSubmitCommand = () => {
-  console.log('Command submitted:', command);
+    console.log('Command submitted:', command);
 
-  // Define the codes and their corresponding actions
-  const commandCodes = {
-    '92848398KJKSDKJ': 'Open purchase tab',
-    '742HJKSKK1209JI': 'Open previous purchases tab',
-    '384JHKDFKJ29DSF': 'Open current inventory tab'
-  };
+    // Define the codes and their corresponding actions
+    const commandCodes = {
+      '92848398KJKSDKJ': '/purchase',
+      '742HJKSKK1209JI': '/previous-purchases',
+      '384JHKDFKJ29DSF': '/current-inventory'
+    };
 
-  // Check if the submitted command matches any defined code
-  const action = commandCodes[command];
-  console.log('Action:', action); // Log the action
-  console.log('Command codes:', commandCodes); // Log the command codes (for debugging)
-  
-  // Check if the action is correctly assigned
-  if (action) {
-    console.log('Expected action:', action); // Log the expected action
-    switch (action) {
-      case 'Open purchase tab':
-        // Implement logic to navigate to the purchase tab
-        break;
-      case 'Open previous purchases tab':
-        // Implement logic to navigate to the previous purchases tab
-        break;
-      case 'Open current inventory tab':
-        // Implement logic to navigate to the current inventory tab
-        break;
-      default:
-        console.log('Unknown action:', action);
+    // Check if the submitted command matches any defined code
+    const path = commandCodes[command];
+    console.log('Path:', path); // Log the path
+    
+    // Check if the path is correctly assigned
+    if (path) {
+      console.log('Navigating to:', path); // Log the path
+      router.push(path); // Navigate to the corresponding tab
+    } else {
+      console.log('Command not recognized.');
     }
-  } else {
-    console.log('Command not recognized.');
-  }
 
-  setCommand('');
-};
-
-
+    setCommand('');
+  };
 
   return (
     <div>
@@ -71,14 +58,11 @@ function MyApp({ Component, pageProps }) {
             </li>
           </ul>
         </nav>
-        <CommandProcessor // Correct component usage
+        <CommandProcessor
           value={command}
           onChange={handleCommandChange}
           onSubmit={handleSubmitCommand}
         />
-      </div>
-      <div className="container">
-        {/* Remove duplicate input field */}
       </div>
       <div className="container page-content">
         <Component {...pageProps} />
