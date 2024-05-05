@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   };
 
   const handleSubmitCommand = () => {
-    console.log('Command submitted:', command);
+  console.log('Command submitted:', command);
 
   // Define the codes and their corresponding actions
   const commandCodes = {
@@ -23,6 +23,9 @@ function MyApp({ Component, pageProps }) {
   // Check if the submitted command matches any defined code
   const action = commandCodes[command];
   console.log('Action:', action); // Log the action
+  console.log('Command codes:', commandCodes); // Log the command codes (for debugging)
+  
+  // Check if the action is correctly assigned
   if (action) {
     console.log('Expected action:', action); // Log the expected action
     switch (action) {
@@ -44,6 +47,7 @@ function MyApp({ Component, pageProps }) {
 
   setCommand('');
 };
+
 
 
   return (
