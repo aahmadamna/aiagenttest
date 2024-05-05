@@ -1,12 +1,11 @@
 import './styles.css';
 import Link from 'next/link';
 import { useState } from 'react';
-import CommandProcessor from '../components/CommandProcessor';
-import { useRouter } from 'next/router'; // Import the useRouter hook
+import CommandProcessor from '../components/CommandProcessor'; // Correct import
 
 function MyApp({ Component, pageProps }) {
   const [command, setCommand] = useState('');
-  const router = useRouter(); // Get the router object
+  const [activeTab, setActiveTab] = useState('purchase');
 
   const handleCommandChange = (event) => {
     setCommand(event.target.value);
@@ -17,19 +16,30 @@ function MyApp({ Component, pageProps }) {
 
     // Define the codes and their corresponding actions
     const commandCodes = {
-      '92848398KJKSDKJ': '/purchase',
-      '742HJKSKK1209JI': '/previous-purchases',
-      '384JHKDFKJ29DSF': '/current-inventory'
+      '92848398KJKSDKJ': 'Open purchase tab',
+      '742HJKSKK1209JI': 'Open previous purchases tab',
+      '384JHKDFKJ29DSF': 'Open current inventory tab'
     };
 
     // Check if the submitted command matches any defined code
-    const path = commandCodes[command];
-    console.log('Path:', path); // Log the path
+    const action = commandCodes[command];
     
-    // Check if the path is correctly assigned
-    if (path) {
-      console.log('Navigating to:', path); // Log the path
-      router.push(path); // Navigate to the corresponding tab
+    if (action) {
+      console.log('Performing action:', action);
+      // Implement logic to perform the corresponding action
+      switch (action) {
+        case 'Open purchase tab':
+          setActiveTab('purchase');
+          break;
+        case 'Open previous purchases tab':
+          setActiveTab('previous-purchases');
+          break;
+        case 'Open current inventory tab':
+          setActiveTab('current-inventory');
+          break;
+        default:
+          console.log('Unknown action:', action);
+      }
     } else {
       console.log('Command not recognized.');
     }
@@ -58,11 +68,15 @@ function MyApp({ Component, pageProps }) {
             </li>
           </ul>
         </nav>
-        <CommandProcessor
+        <CommandProcessor // Correct component usage
           value={command}
           onChange={handleCommandChange}
           onSubmit={handleSubmitCommand}
+          setActiveTab={setActiveTab} // Pass setActiveTab to the CommandProcessor
         />
+      </div>
+      <div className="container">
+        {/* Remove duplicate input field */}
       </div>
       <div className="container page-content">
         <Component {...pageProps} />
