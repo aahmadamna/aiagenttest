@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }) {
   const handleSubmitCommand = () => {
     console.log('Command submitted:', command);
 
-  // Define the codes and their corresponding actions
+ // Define the codes and their corresponding actions
   const commandCodes = {
     '92848398KJKSDKJ': 'Open purchase tab',
     '742HJKSKK1209JI': 'Open previous purchases tab',
@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
   const action = commandCodes[command];
   
   if (action) {
-    console.log('Expected action:', action);
+    console.log('Expected action:', action); // Log the expected action
     switch (action) {
       case 'Open purchase tab':
         // Implement logic to navigate to the purchase tab
@@ -44,6 +44,7 @@ function MyApp({ Component, pageProps }) {
 
   setCommand('');
 };
+
 
   return (
     <div>
