@@ -1,0 +1,46 @@
+import { useState, useEffect } from 'react';
+import { AutoModelForSequenceClassification } from '@huggingface/transformers';
+
+function TextClassificationComponent() {
+    const [model, setModel] = useState(null);
+    const [inputText, setInputText] = useState('');
+    const [classificationResult, setClassificationResult] = useState(null);
+
+    useEffect(() => {
+        async function loadModel() {
+            const loadedModel = await AutoModelForSequenceClassification.fromPretrained('amnaad24/my_awesome_model');
+            setModel(loadedModel);
+        }
+        loadModel();
+    }, []);
+
+    async function handleClassification() {
+        if (!model || !inputText) return; // Model not loaded or input text is empty
+
+        // Perform text classification
+        const logits = await model.predict(inputText);
+        // Process logits as needed
+        setClassificationResult(logits);
+    }
+
+    return (
+        <div>
+            <textarea 
+                rows={4} 
+                cols={50} 
+                value={inputText} 
+                onChange={(e) => setInputText(e.target.value)} 
+                placeholder="Enter text to classify"
+            />
+            <button onClick={handleClassification}>Classify Text</button>
+            {classificationResult && (
+                <div>
+                    <h2>Classification Result:</h2>
+                    <pre>{JSON.stringify(classificationResult, null, 2)}</pre>
+                </div>
+            )}
+        </div>
+    );
+}
+
+export default TextClassificationComponent;
