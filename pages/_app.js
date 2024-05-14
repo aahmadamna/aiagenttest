@@ -2,6 +2,9 @@ import './styles.css';
 import Link from 'next/link';
 import { useState } from 'react';
 import CommandProcessor from '../components/CommandProcessor'; // Correct import
+import { AutoModelForSequenceClassification } from '@huggingface/transformers';
+import { useState } from 'react'; // Import useState if not already imported
+
 
 function MyApp({ Component, pageProps }) {
   const [command, setCommand] = useState('');
