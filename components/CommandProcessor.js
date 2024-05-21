@@ -15,9 +15,9 @@ const CommandProcessor = () => {
   const processCommand = () => {
     // Define the codes and their corresponding actions
     const commandCodes = {
-      '92848398KJKSDKJ': '/purchase',
-      '742HJKSKK1209JI': '/previous-purchases',
-      '384JHKDFKJ29DSF': '/current-inventory'
+      'PURCHASE': '/purchase',
+      'PREV-PURCHASE': '/previous-purchases',
+      'CURRENT-INVENTORY': '/current-inventory'
     };
 
     // Check if the submitted command matches any defined code
