@@ -19,9 +19,9 @@ function MyApp({ Component, pageProps }) {
 
     // Define the codes and their corresponding actions
     const commandCodes = {
-      '92848398KJKSDKJ': 'Open purchase tab',
-      '742HJKSKK1209JI': 'Open previous purchases tab',
-      '384JHKDFKJ29DSF': 'Open current inventory tab'
+      'PURCHASE': 'Open purchase tab',
+      'PREV-PURCHASE': 'Open previous purchases tab',
+      'CURRENT-INVENTORY': 'Open current inventory tab'
     };
 
     // Check if the submitted command matches any defined code
